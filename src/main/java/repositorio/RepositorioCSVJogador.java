@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -103,6 +104,11 @@ public class RepositorioCSVJogador implements RepositorioJogador{
 				.limit(10)
 				.map(Jogador::getFullName)
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public Map<Integer, Integer> groupAndCountByAge() {
+		return jogadores.stream().collect(Collectors.toMap(Jogador::getAge, j -> 1, Integer::sum));
 	}
 
 }

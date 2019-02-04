@@ -8,8 +8,8 @@ import repositorio.RepositorioJogador;
 
 public class Main {
 
-	
 	private RepositorioJogador repositorioJogador = new RepositorioCSVJogador();
+	
 	// Quantas nacionalidades (coluna `nationality`) diferentes existem no arquivo?
 	public int q1() {
 		return repositorioJogador.countByNationality();
@@ -41,7 +41,7 @@ public class Main {
 	// Conte quantos jogadores existem por idade. Para isso, construa um mapa onde as chaves são as idades e os valores a contagem.
 	// (utilize a coluna `age`)
 	public Map<Integer, Integer> q6() {
-		return null;
+		return repositorioJogador.groupAndCountByAge();
 	}
 
 }
