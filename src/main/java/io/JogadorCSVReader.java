@@ -1,5 +1,6 @@
 package io;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -17,7 +18,7 @@ import util.DateUtil;
 
 public class JogadorCSVReader {
 	
-	private String csvFile = "src/main/resources/data.csv";
+	private String csvFileName = "data.csv";
 	
 	private static final int FULL_NAME_COL = 2;
 	private static final int CLUB_COL = 3;
@@ -27,13 +28,18 @@ public class JogadorCSVReader {
 	private static final int EUR_RELEASE_CLAUSE_COL = 18;
 	private static final int EUR_WAGE_COL = 17;
 	
+	private File getFile() {
+		ClassLoader classLoader = getClass().getClassLoader();
+		return new File(classLoader.getResource(csvFileName).getFile());
+	}
+	
 	public List<Jogador> loadListFromFile() {
 		
 		List<Jogador> jogadores = new ArrayList<>();
 
 		CSVReader reader = null;
 		try {
-			reader = new CSVReader(new FileReader(csvFile));
+			reader = new CSVReader(new FileReader(getFile()));
 			String[] line;
 
 			line = reader.readNext(); // ignore first line
